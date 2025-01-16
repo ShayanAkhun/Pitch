@@ -7,7 +7,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
 
   const posts = [
     {
-      _createdAt: "Yesterday",
+      _createdAt: new Date(),
       views: 55,
       author: { _id: 1 },
       _id: 1,
@@ -31,15 +31,15 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
       </section>
 
       <section className="section_container">
-        <p>
+        <p className="text-30-semibold">
           {query ? `Search resutlts for "${query}"` : 'All starups'}
         </p>
 
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
 
-            posts.map((post: StartupCardType, index: number) => (
-              <StartupCard />
+            posts.map((post: StartupCardType) => (
+              <StartupCard key={post?._id} post={post} />
             ))
           ) : (
             <p className="no-results">No startups found </p>
