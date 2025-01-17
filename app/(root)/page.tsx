@@ -9,7 +9,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
     {
       _createdAt: new Date(),
       views: 55,
-      author: { _id: 1 },
+      author: { _id: 1,name: 'Naruto' },
       _id: 1,
       description: 'This is a description',
       image: 'https://imgur.com/6jRKww7',
