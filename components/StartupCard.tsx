@@ -5,7 +5,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const StartupCard = ({ post }: { post: StartupCardType }) => {
-  const { _createdAt, views, image, author: { _id: authorId, name }, title, category, id } = post
+  const { _createdAt, views, image, author: { _id: authorId, name }, title, category, id, description } = post
   return (
     <li className='startup-card group'>
       <div className='flex-between'>
@@ -26,10 +26,14 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
             <h3 className="text-26-semibold line-clamp-1">{title}</h3>
           </Link>
         </div>
-        <Link  href={`/user/${authorId}`}>
-            <Image src='https://placehold.co/600x400' alt='placeholder' width={48} height={48} className='rounded-full'/>
+        <Link href={`/user/${authorId}`}>
+          <Image src='https://placehold.co/48x48' alt='placeholder' width={48} height={48} className='rounded-full' />
         </Link>
       </div>
+      <Link href={`/user/${authorId}`}>
+        <p className='startup-card_desc'>{description}</p>
+      </Link>
+
     </li>
   )
 }
