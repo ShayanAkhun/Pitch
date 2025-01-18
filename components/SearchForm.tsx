@@ -16,7 +16,7 @@ const SearchForm = ({query} :{query? :string}) => {
         placeholder='Search Startups'
       />
       <div className='flex gap-2'>
-        { query && <SearchFormReset />}
+        { query && <SearchFormReset/>}
           <button type='submit' className='search-btn text-white'>
             <Search className='size-5'/>
           </button>

@@ -9,10 +9,10 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
     {
       _createdAt: new Date(),
       views: 55,
-      author: { _id: 1,name: 'Naruto' },
+      author: { _id: 1, name: 'Naruto' },
       _id: 1,
       description: 'This is a description',
-      image: 'https://imgur.com/6jRKww7',
+      image: 'https://i2.wp.com/animenosub.to/wp-content/uploads/2024/08/ryefC0mqOSzpyTgIS2suZts4Z7H.jpg',
       category: 'Anime',
       title: 'We Anime'
     }
