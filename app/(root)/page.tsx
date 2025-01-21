@@ -1,29 +1,14 @@
 import StartupCard, { StartupCardType } from "@/components/StartupCard";
 import SearchForm from "../../components/SearchForm";
-import { client } from "@/sanity/lib/client";
 import { STARTUP_QURIES } from "@/sanity/lib/quries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }> }) {
 
   const query = (await searchParams).query;
+  const params = {search : query || null}
 
-  const posts  = await client.fetch(STARTUP_QURIES);
-
-  console.log(JSON.stringify(posts,null,2))
-
-
-  // const posts = [
-  //   {
-  //     _createdAt: new Date(),
-  //     views: 55,
-  //     author: { _id: 1, name: 'Naruto' },
-  //     _id: 1,
-  //     description: 'This is a description',
-  //     image: 'https://i2.wp.com/animenosub.to/wp-content/uploads/2024/08/ryefC0mqOSzpyTgIS2suZts4Z7H.jpg',
-  //     category: 'Anime',
-  //     title: 'We Anime'
-  //   }
-  // ]
+  const { data: posts } = await sanityFetch({ query: STARTUP_QURIES,params })
 
 
   return (
@@ -53,6 +38,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
           )}
         </ul>
       </section>
+      <SanityLive/>
     </>
   );
 }
