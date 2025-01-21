@@ -16,7 +16,6 @@ export const startup = defineType({
         source: "title",
       },
     }),
-
     defineField({
       name: "author",
       type: "reference",
@@ -46,5 +45,4 @@ export const startup = defineType({
       type: "markdown",
     }),
   ],
-
 });

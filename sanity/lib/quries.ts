@@ -22,10 +22,17 @@ export const STARTUP_QURIES =
     slug,
     _createdAt,
     author -> {
-    _id, name, image, bio},
+    _id, name, username, image, bio},
     views,
     description,
     image,
     category,
     pitch
 }`)
+
+
+export const STARTUP_VIEWS_QUERY = defineQuery(`
+    *[_type == "startup" && _id ==$id][0]{
+        _id, views
+    }
+  `)

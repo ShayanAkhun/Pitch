@@ -13,3 +13,7 @@ export function formatDate(date: string) {
     year: 'numeric'
   })
 }
+
+export const formatNumber = (count: number, singular: string, plural: string): string => {
+  return count === 1 ? `${count} ${singular}` : `${count} ${plural}`;
+};
