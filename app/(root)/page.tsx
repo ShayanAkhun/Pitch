@@ -1,4 +1,4 @@
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartupCardType } from "@/components/StartupCard";
 import SearchForm from "../../components/SearchForm";
 import { client } from "@/sanity/lib/client";
 import { STARTUP_QURIES } from "@/sanity/lib/quries";
