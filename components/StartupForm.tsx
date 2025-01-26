@@ -5,13 +5,18 @@ import { Textarea } from "@/components/ui/textarea"
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from './ui/button';
 import { Send } from 'lucide-react';
-import { formSchema } from '@/sanity/lib/validation';
+import { formSchema } from '@/lib/validation';
 import { z } from "zod";
+import { useToast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
+import { createPitch } from '@/lib/actions';
 
 
 const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [pitch, setPitch] = useState("")
+  const { toast } = useToast();
+  const router = useRouter();
 
   const handleFormSubmit = async (prevState: any, formData: FormData) => {
     try {
@@ -23,25 +28,39 @@ const StartupForm = () => {
         pitch
       }
       await formSchema.parseAsync(formValues);
-      // const result = await createIdea(prevState, formData, pitch)
-
-
+      const result = await createPitch(prevState, formData, pitch)
+      if(result.status === 'SUCCES') {
+        toast({
+          title :"Success ",
+          description : "your startup pitch has been created successfully",
+        })
+        router.push(`/startup/${result._id}`)
+      }
+      return result
 
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors = error.flatten().fieldErrors;
-
         setErrors(fieldErrors as unknown as Record<string, string>);
-
+        toast({
+          title: "Error",
+          description: "Please check your inputs and try again",
+          variant: "destructive",
+        });
         return { ...prevState, error: 'Validation failed', status: 'ERROR' }
 
       }
+      toast({
+        title: "Error",
+        description: "Please check your inputs and try again",
+        variant: "destructive",
+      });
       return {
         ...prevState,
         error: "An unexpected error has occured",
         status: "ERROR"
       }
-    } 
+    }
   }
 
   const [state, formAction, isPending] = useActionState(handleFormSubmit, {

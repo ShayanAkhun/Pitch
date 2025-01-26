@@ -14,6 +14,10 @@ export function formatDate(date: string) {
   })
 }
 
-export const formatNumber = (count: number, singular: string, plural: string): string => {
+export function formatNumber  (count: number, singular: string, plural: string): string  {
   return count === 1 ? `${count} ${singular}` : `${count} ${plural}`;
 };
+
+export function parseServerActionResponse<T> (response : T) {
+    return JSON.parse(JSON.stringify(response))
+}
